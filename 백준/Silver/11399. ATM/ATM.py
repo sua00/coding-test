@@ -1,15 +1,15 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
-time = list(map(int, input().split()))
-time.sort()
+times = list(map(int, input().split()))
+times.sort()
 
-prefix =[]
-current_sum = 0
+ans = 0
+current = 0
 
-for x in time:
-    current_sum += x
-    prefix.append(current_sum)
-
-ans = sum(prefix)
+for t in times:
+    current += t
+    ans += current
 
 print(ans)
-    
