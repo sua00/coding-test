@@ -8,7 +8,6 @@ def solve():
         n = int(input().strip())
     except: return
 
-    # 1. 초기화 및 작년 순위 입력
     graph = [[False] * (n + 1) for _ in range(n + 1)]
     indegree = [0] * (n + 1)
     team = list(map(int, input().split()))
@@ -18,7 +17,6 @@ def solve():
             graph[team[i]][team[j]] = True
             indegree[team[j]] += 1
 
-    # 2. 순위 변동 적용
     m = int(input().strip())
     for _ in range(m):
         a, b = map(int, input().split())
@@ -30,7 +28,6 @@ def solve():
             graph[b][a], graph[a][b] = False, True
             indegree[a] -= 1; indegree[b] += 1
 
-    # 3. 위상 정렬 (원래 쓰시던 방식)
     result = []
     q = deque()
     for i in range(1, n + 1):
@@ -55,7 +52,6 @@ def solve():
 
     print(*(result))
 
-# 메인 실행
 T = int(input().strip())
 for _ in range(T):
     solve()
