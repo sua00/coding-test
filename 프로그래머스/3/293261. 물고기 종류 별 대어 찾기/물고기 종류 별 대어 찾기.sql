@@ -1,0 +1,9 @@
+-- 코드를 작성해주세요
+SELECT info.ID, name.FISH_NAME, info.LENGTH
+FROM FISH_NAME_INFO name, FISH_INFO info
+WHERE info.FISH_TYPE = name.FISH_TYPE AND info.LENGTH = 
+(
+    SELECT MAX(LENGTH) 
+    FROM FISH_INFO 
+    WHERE FISH_TYPE = name.FISH_TYPE);
+
