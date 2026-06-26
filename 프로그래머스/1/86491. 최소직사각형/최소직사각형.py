@@ -1,19 +1,22 @@
 def solution(sizes):
-    answer_h = 0
-    answer_w = 0
-    #가로, 세로 중 더 긴 값을 가로로 통일
+    answer= 0
     for size in sizes:
-        width, height = size[0], size[1]
+        width = size[0]
+        height = size[1]
         if width < height:
             size[0] = height
             size[1] = width
-        
+    max_width = 0
+    max_height = 0
     for size in sizes:
-        width, height = size[0], size[1]
-        if width > answer_w:
-            answer_w = width
-        if height > answer_h:
-            answer_h = height
+        w = size[0]
+        h = size[1]
+        if w> max_width:
+            max_width = w
+        if h > max_height:
+            max_height = h
         
-    answer = answer_w * answer_h
+    answer= max_width * max_height
+        
     return answer
+        
