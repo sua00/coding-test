@@ -8,14 +8,17 @@ def solution(numbers, target):
     answer = 0
     
     def dfs(index, current_sum):
-        if index == len(numbers): #모든 숫자에 대해 +/-검증을 한 경우
-            if current_sum == target: #타겟넘버에 도달했는지 확인
-                nonlocal answer #선언
-                answer +=1
+        #종료 조건 먼저 확인 : numbers의 모든 숫자 확인한 경우
+        if index == len(numbers):
+            #target값과 current_sum이 같은지 확인
+            if current_sum == target:
+                nonlocal answer
+                answer += 1
             return
-        #index가 끝이 아니라면?
-        dfs(index+1, current_sum + numbers[index])
-        dfs(index+1, current_sum - numbers[index])
+        #아직 확인할 숫자들 남았으면 dfs 다시 수행 (재귀)
+        dfs(index+1, current_sum+numbers[index])
+        dfs(index+1, current_sum-numbers[index])
+        
     dfs(0,0)
     return answer
                 
