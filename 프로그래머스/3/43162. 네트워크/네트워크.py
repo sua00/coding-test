@@ -4,13 +4,11 @@ def solution(n, computers):
     #컴퓨터 방문했는지 확인
     visited = [False] * n
     answer = 0
-    
     def dfs(node):
-        visited[node] = True
-        
-        for next_com in range(n):
-            if computers[node][next_com] == 1 and not visited[next_com]:
-                dfs(next_com)
+        visited[node]= True
+        for next_node in range(n):
+            if computers[node][next_node] == 1 and not visited[next_node]:
+                dfs(next_node)
     
     for i in range(n):
         if not visited[i]:
@@ -18,3 +16,4 @@ def solution(n, computers):
             dfs(i)
     
     return answer
+                
