@@ -8,13 +8,15 @@ def solution(bridge_length, weight, truck_weights):
     
     while trucks:
         time +=1
-        on_bridge -= bridge.popleft()
+        b = bridge.popleft()
+        on_bridge -= b
         
         if on_bridge + trucks[0] <= weight:
-            t= trucks.popleft()
-            bridge.append(t)
-            on_bridge += t
+            truck = trucks.popleft()
+            bridge.append(truck)
+            on_bridge += truck
         else:
             bridge.append(0)
             
-    return time+bridge_length
+    time = time + bridge_length
+    return time
