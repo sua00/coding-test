@@ -1,12 +1,10 @@
 def solution(citations):
-    answer = 0
-    max_ = max(citations)
+    citations = sorted(citations, reverse=True)
+
     
-    for i in range(max_+1):
-        count = 0
-        for citation in citations:
-            if citation >= i:
-                count +=1
-        if count >= i:
-            answer = i
-    return answer
+    for i, cit in enumerate(citations):
+
+        if cit < i+1:
+            return i
+    return len(citations)
+    
