@@ -1,22 +1,18 @@
 def solution(sizes):
-    answer= 0
+    answer = 0
+    temp = 0
+    max_w =0
+    max_h=0
     for size in sizes:
-        width = size[0]
-        height = size[1]
-        if width < height:
-            size[0] = height
-            size[1] = width
-    max_width = 0
-    max_height = 0
-    for size in sizes:
-        w = size[0]
-        h = size[1]
-        if w> max_width:
-            max_width = w
-        if h > max_height:
-            max_height = h
-        
-    answer= max_width * max_height
-        
+        w, h = size[0], size[1]
+        if w < h:
+            temp = h
+            h = w
+            w = temp
+            
+        if max_w < w:
+            max_w = w
+        if max_h < h:
+            max_h = h
+    answer = max_w * max_h
     return answer
-        
