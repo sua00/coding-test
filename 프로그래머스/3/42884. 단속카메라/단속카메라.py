@@ -1,0 +1,12 @@
+def solution(routes):
+    answer = 0
+    routes= sorted(routes, key =lambda x:x[1])
+    
+    camera = -30001
+    
+    for start, end in routes:
+        if start > camera:
+            camera = end
+            answer+=1
+        
+    return answer
