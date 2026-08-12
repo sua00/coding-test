@@ -1,18 +1,16 @@
-# dfs/bfs 중 어느 것을 사용해도 괜찮은 문제
-# 단 방문체크가 중요함
 def solution(n, computers):
-    answer= 0
-    visited = [False]*n
-    def dfs(current):
-        visited[current]=True
-        for i in range(n):
-            if computers[current][i]==1 and not visited[i]:
-                dfs(i)
+    answer = 0
+    visited=[False]*n
+    
+    def dfs(node):
+        visited[node] = True
+        
+        for next_node in range(n):
+            if computers[node][next_node] ==1 and not visited[next_node]:
+                dfs(next_node)
+                
     for i in range(n):
         if not visited[i]:
-            answer +=1
+            answer += 1
             dfs(i)
     return answer
-                
-
-                
