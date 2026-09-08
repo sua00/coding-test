@@ -1,17 +1,19 @@
+# dfs : 한 가지 경로로 쭉 해보고 답을 확인하는 구조
+#dfs : 재귀를 통해 구현
+
 def solution(numbers, target):
     answer = 0
     
-    def dfs(index, total):
+    def dfs(index, result):
         nonlocal answer
         
-        if index == len(numbers): #끝까지 내려갔을때
-            if total == target:
+        if index == len(numbers):
+            if result == target:
                 answer+=1
             return
         
-        dfs(index+1, total+numbers[index])
-        dfs(index+1, total-numbers[index])
+        dfs(index+1, result+numbers[index])
+        dfs(index+1, result-numbers[index])
     
     dfs(0,0)
-            
     return answer
