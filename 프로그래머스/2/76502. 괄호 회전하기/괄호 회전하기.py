@@ -1,22 +1,28 @@
+#회전시키는 문제 : 2배시켜서 연결시킴
 def solution(s):
     answer = 0
-    circle_ = s*2
+    circle = s*2
     
     def check_(s):
         temp = []
-        pairs = {')': '(', ']': '[', '}': '{'}
-
+        pairs = {')': '(', ']': '[','}': '{'}
+        
         for i in s:
-            if i == '{' or i == '(' or i == '[':
+            if i == '[' or i == '{' or i == '(':
                 temp.append(i)
-            if i == ']' or i == '}' or i == ')':
-                if not temp or temp.pop() != pairs[i]:
+            else:
+                if not temp:
                     return False
+                elif temp[-1] != pairs[i]:
+                    return False
+                else:
+                    temp.pop()
+                    
         return not temp
-    
-    for i in range(len(s)):
-        test = circle_[i:i+len(s)]
-        if check_(test):
+            
+    for i in range(len(circle)-len(s)):
+        target = circle[i:i+len(s)]
+        if check_(target):
             answer +=1
         
     return answer
