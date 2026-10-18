@@ -1,15 +1,25 @@
 def solution(s):
     answer = True
-    temp = []
-    #열린 괄호나 닫힌 괄호 하나만 넣고 닫는걸 만날 때마다 가장 최신 열린 괄호부터 닫아준다 -> lifo
     
-    if s[-1] =='(' or s[0] == ')':
-        return False
+    if s[0] == ')':
+        answer = False
+    if s[-1] =='(':
+        answer = False
     
-    for c in s :
-        if c == '(':
-            temp.append(c)
+    str_ = []
+    for i in s:
+        if i == '(':
+            str_.append(i)
         else:
-            if temp:
-                temp.pop()
-    return not temp
+            if not str_:
+                answer=False
+                return answer
+            else:
+                str_.pop()
+    
+    if not str_:
+        answer= True
+    else:
+        answer = False
+        
+    return answer
