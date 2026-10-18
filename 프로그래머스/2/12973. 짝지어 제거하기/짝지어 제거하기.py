@@ -1,14 +1,16 @@
+#짝을 지어서 제거한다는 점에서 괄호 문제와 비슷하다
+
 def solution(s):
-    answer = -1
-    temp = []
-    
-    for i in s:
-        if temp and temp[-1] == i:
-            temp.pop()
+    str_ = []
+    str_.append(s[0])
+
+    for i in range(1, len(s)):
+        if not str_ or s[i] != str_[-1]:
+            str_.append(s[i])
         else:
-            temp.append(i)
-    if temp:
-        answer = 0
+            str_.pop()
+    
+    if not str_:
+        return 1
     else:
-        answer = 1
-    return answer
+        return 0
