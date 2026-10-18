@@ -7,12 +7,12 @@ from collections import Counter
 def solution(k, tangerine):
     answer = 0
     
-    counts = Counter(tangerine)
-    counts = sorted(counts.values(), reverse = True)
+    counts = Counter(tangerine) #O(N)
+    counts = sorted(counts.values(), reverse = True) #O(NlogN)
     
     sum_ = 0
     
-    for count in counts:
+    for count in counts:#O(N)
         sum_ += count
         answer +=1
         if sum_ >= k:
