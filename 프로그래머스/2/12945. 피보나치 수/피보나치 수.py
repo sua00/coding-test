@@ -11,6 +11,7 @@ def solution(n):
     dp[0] = 0
     dp[1] =1
     
+    #한번 계산한 값은 저장해놓고 꺼내쓰기
     for i in range(2,n+1):
         dp[i] = dp[i-1]+dp[i-2]
     
