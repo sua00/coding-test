@@ -1,15 +1,19 @@
+#그리디
+#가장 작은 값과 가장 큰 값을 계속 비교 : 투 포인터 사용
 def solution(people, limit):
-    #가장 무거운 사람과 가벼운 사람 태울 수 있으면 태우고 안되면 무거운 사람만
-    people = sorted(people)
-    left = 0
-    right = len(people)-1
     answer = 0
     
+    people.sort()
+    
+    left = 0
+    right = len(people)-1
+    
     while left <= right:
-        if people[left] + people[right] <= limit:
+        if left < right and people[left]+people[right] <= limit:
+            answer+=1
             left+=1
-        
-        right-=1
-        answer +=1
-            
+            right-=1
+        else:
+            right -=1
+            answer +=1
     return answer
