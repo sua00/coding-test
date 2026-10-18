@@ -1,14 +1,14 @@
 def solution(elements):
-
-    n = len(elements)
-    arr = elements *2
-    result = set()
+    answer = 0
+    circle = elements*2
+    temp = set()
     
-    for start in range(n): #0,1,2,3,4
+    for start in range(len(elements)):
         total = 0
         
-        for length in range(1,n+1):
-            total += arr[start+length-1]
-            result.add(total)
+        for len_ in range(1, len(elements)+1):
+            total += circle[start+len_-1]
+            temp.add(total)
     
-    return len(result)
+    answer = len(temp)
+    return answer
