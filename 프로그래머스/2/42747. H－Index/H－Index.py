@@ -1,10 +1,16 @@
 def solution(citations):
-    citations = sorted(citations, reverse=True)
+    answer = 0
+    candidate = []
 
-    
-    for i, cit in enumerate(citations):
+    for i in range(len(citations) + 1):
+        temp = 0
 
-        if cit < i+1:
-            return i
-    return len(citations)
-    
+        for cit in citations:
+            if cit >= i:
+                temp += 1
+
+        if temp >= i:
+            candidate.append(i)
+
+    answer = max(candidate)
+    return answer
