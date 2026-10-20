@@ -1,12 +1,11 @@
-# n의 범위가 너무 크기 때문에 n*n 배열 만들면 안됨
-# 각 칸 자체의 규칙을 찾아야함 : 행, 열 중 더 큰 값 +1
-
+#구현.. 아이디어가 중요....
 def solution(n, left, right):
     answer = []
-    
-    for i in range(left, right+1): 
-        row = i //n
-        col = i%n
+    #인덱스로 행렬을 치환했을때.. 몫이 행, 나머지가 열이 됨
+    for i in range(left, right+1):
+        row = i // n
+        col = i % n
         
+        #각 인덱스에 해당하는 값은 행, 렬 중 큰 값의 +1
         answer.append(max(row, col)+1)
     return answer
