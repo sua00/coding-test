@@ -1,19 +1,27 @@
-import math
-from collections import deque
-
 def solution(progresses, speeds):
     answer = []
-    remain = deque()
-    for i in range(len(progresses)):
-        remain.append(math.ceil((100-progresses[i])/speeds[i]))
+    remain = []
     
-    print(remain)
-    while remain:
-        cur = remain.popleft()
-        cnt=1
-        print(remain)
-        while remain and remain[0]<= cur:
-            remain.popleft()
-            cnt+=1
-        answer.append(cnt)
+    for progress in progresses: #O(N)
+        remain.append(100-progress)
+    
+    days =[]
+    for i in range(len(remain)):
+        if remain[i] % speeds[i] != 0:
+            days.append(remain[i]//speeds[i]+1)
+        else:
+            days.append(remain[i]//speeds[i])
+    
+    current_days = days[0]
+    count = 1
+    
+    for i in range(1, len(days)):
+        if days[i] <= current_days:
+            count+=1
+        else:
+            answer.append(count)
+            current_days = days[i]
+            count = 1
+    
+    answer.append(count)
     return answer
