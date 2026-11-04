@@ -1,26 +1,19 @@
 def solution(word):
     answer = 0
-    count= 0
-    
-    vowels = ['A','E','I','O','U']
-    
+    words = []
+    vowels = ['A', 'E', 'I', 'O', 'U']
     
     def dfs(current):
-            nonlocal answer, count
-
-            if len(current)>5:
-                return 
-
-            if current:
-                count+=1
-
-                if current == word:
-                    answer= count
-                    return
-
-            for v in vowels:
-                dfs(current+v)
-
+        if current:
+            words.append(current)
+        
+        if len(current) == 5:
+            return
+        
+        for vowel in vowels:
+            dfs(current+vowel)
+    
     dfs("")
     
+    answer= words.index(word)+1
     return answer
