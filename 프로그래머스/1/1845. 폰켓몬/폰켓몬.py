@@ -1,7 +1,9 @@
 def solution(nums):
     answer = 0
-    mon = set()
-    for i in nums:
-        mon.add(i)
-    answer = min(len(mon),len(nums)/2)
+    species = set(nums)
+    
+    if len(species) >= len(nums)//2:
+        answer = len(nums)//2
+    else:
+        answer = len(species)
     return answer
