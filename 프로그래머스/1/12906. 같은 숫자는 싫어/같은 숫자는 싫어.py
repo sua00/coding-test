@@ -1,12 +1,10 @@
 def solution(arr):
     answer = []
-    #print(dir(list))
     for i in range(len(arr)):
-        if len(answer)==0:
+        if not answer:
             answer.append(arr[i])
-        elif arr[i] != answer[-1]:
-            answer.append(arr[i])
-        else:
+        elif arr[i] == arr[i-1]:
             continue
-        
+        else:
+            answer.append(arr[i])
     return answer
