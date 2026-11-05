@@ -1,27 +1,32 @@
 import heapq
 def solution(jobs):
-    answer = 0
-    #우선순위 : 소요시간이 짧은 것 -> 요청시간이 빠른 것 -> 작업의 번호가 작은 것
-    jobs.sort()
-    done=0
-    n = len(jobs)
-    wait = []
-    now = 0
-    i=0
-    total=0
+    answer= 0
+    time = 0
+    task = [] #실제 요청된 job들 넣을 곳
     
-    while done < n:
-        while i < n and jobs[i][0] <= now:
-            heapq.heappush(wait, (jobs[i][1], jobs[i][0]))
-            i+=1
+    #도착 시간 별
+    jobs = sorted(
+        [(job[0], job[1],i ) for i, job in enumerate(jobs)]
+    )
+    print(jobs)
+    
+    idx = 0
+    #모든 작업들 할 때 동안 + task 남아 있는 동안
+    while idx < len(jobs) or task: 
         
-        if wait:
-            time, start= heapq.heappop(wait)
-            now += time
-            total += now-start
-            done += 1
+        #현재 시간까지 요청된 task -> task 에 넣음
+        while idx < len(jobs) and jobs[idx][0] <= time:
+            request, duration, number = jobs[idx]
+            heapq.heappush(task, (duration, request, number))
+            idx += 1
+        
+        #요청된 작업이 있는 경우 
+        if task:
+            duration, request, number = heapq.heappop(task)
+            time += duration
+            answer += time - request
         else:
-            now = jobs[i][0]
+            time = jobs[idx][0]
+    
+    return answer // len(jobs)
         
-        
-    return total//n
