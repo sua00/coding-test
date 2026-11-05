@@ -1,25 +1,19 @@
+#LIFO를 사용해야함 : stack
+#닫힘 괄호를 만났을 때 가장 최근의 여는 괄호를 pop 해야하므로
 def solution(s):
     answer = True
+    stack = []
     
-    if s[0] == ')':
-        answer = False
-    if s[-1] =='(':
-        answer = False
-    
-    str_ = []
     for i in s:
         if i == '(':
-            str_.append(i)
+            stack.append(i)
         else:
-            if not str_:
-                answer=False
-                return answer
+            if not stack:
+                return False
             else:
-                str_.pop()
-    
-    if not str_:
-        answer= True
-    else:
-        answer = False
+                stack.pop()
         
-    return answer
+    if stack:
+        return False
+    else:
+        return True
