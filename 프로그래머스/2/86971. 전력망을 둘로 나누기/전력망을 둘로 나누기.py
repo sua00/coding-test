@@ -1,28 +1,30 @@
 def solution(n, wires):
     answer = n
     
-    def dfs(node):
-        visited[node] = True
-        count =1
-        
-        for next_node in graph[node]:
-            if not visited[next_node]:
-                count += dfs(next_node)
-        return count
-
-    for cut_a, cut_b in wires:
+    for idx in range(len(wires)):
         graph = [[] for _ in range(n+1)]
         
-        for a, b in wires:
-            if a==cut_a and b==cut_b:
+        for i, (a,b) in enumerate(wires):
+            if i == idx:
                 continue
             
             graph[a].append(b)
             graph[b].append(a)
-            
-        visited= [False]*(n+1)
-        count = dfs(1)
-        answer = min(answer, abs(count-(n-count)))
-        
     
+        visited = [False] * (n+1)
+
+        def dfs(node):
+            visited[node] = True
+            count = 1
+
+            for nxt in graph[node]:
+                if not visited[nxt]:
+                    count += dfs(nxt)
+
+            return count
+
+        count = dfs(1)
+
+        diff = abs(count - (n-count))
+        answer = min(diff, answer)
     return answer
