@@ -1,13 +1,23 @@
+#인덱스 처리 -> 큐에 인덱스까지 같이 저장해줘야함
 from collections import deque
 def solution(priorities, location):
-    line = deque(enumerate(priorities))
-    order =1
-    while line:
-        idx, pri = line.popleft()
-        if any (pri < p for _,p in line):
-            line.append((idx,pri))
+    answer = 0
+    queue = deque()
+    
+    for i in range(len(priorities)):
+        queue.append((priorities[i], i))
+    
+    while queue:
+        priority, idx = queue.popleft()
+        higher = False
+        for q in queue:
+            if q[0] > priority:
+                higher = True
+                break
+        if higher:
+            queue.append((priority, idx))
         else:
+            answer +=1
+            
             if idx == location:
-                return order
-            order+=1
-
+                return answer
