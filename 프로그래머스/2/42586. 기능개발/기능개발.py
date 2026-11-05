@@ -1,27 +1,22 @@
+#[7,3,9]
+import math
 def solution(progresses, speeds):
-    answer = []
-    remain = []
+    remains = []
+    answer =[]
+    for i in range(len(progresses)):
+        remain = int(math.ceil((100-progresses[i])/speeds[i]))
+        remains.append(remain)
     
-    for progress in progresses: #O(N)
-        remain.append(100-progress)
+    day= remains[0]
+    cnt = 1
     
-    days =[]
-    for i in range(len(remain)):
-        if remain[i] % speeds[i] != 0:
-            days.append(remain[i]//speeds[i]+1)
+    for i in range(1,len(remains)):
+        if day >= remains[i]:
+            cnt+=1
         else:
-            days.append(remain[i]//speeds[i])
-    
-    current_days = days[0]
-    count = 1
-    
-    for i in range(1, len(days)):
-        if days[i] <= current_days:
-            count+=1
-        else:
-            answer.append(count)
-            current_days = days[i]
-            count = 1
-    
-    answer.append(count)
+            answer.append(cnt)
+            day = remains[i]
+            cnt = 1
+    answer.append(cnt)
     return answer
+ 
